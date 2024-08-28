@@ -29,12 +29,14 @@ extension CreateVC {
         
         createButtonView.setTitle("Edit", for: .normal)
         chooseImageButton.isHidden = true
+        chooseButtonImageView.isHidden = true
     }
     
     @objc func setupBeforeUpdateDatabase() {
         if createButtonView.title(for: .normal) == "Edit"  {
             createButtonView.setTitle("Done", for: .normal)
             chooseImageButton.isHidden = false
+            chooseButtonImageView.isHidden = false
             bookNameTextField.isEnabled = true
             bookAuthorTextField.isEnabled = true
             bookNotesTextField.isEditable = true
@@ -44,6 +46,8 @@ extension CreateVC {
             
         } else {  //when the user click on the done button
             Task{
+                dismissKeyboard()
+                self.navigationController?.navigationBar.isUserInteractionEnabled = false
                 blurLoadingEffect?.show()
                 await BookDataProcesses()
             }

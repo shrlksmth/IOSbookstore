@@ -65,8 +65,6 @@ extension HomeVC {
         }
     }
     
- 
-    
     func deleteImage(from ref: StorageReference) async throws{
         return try await withCheckedThrowingContinuation { continuation in
             ref.delete {error in

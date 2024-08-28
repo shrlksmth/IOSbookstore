@@ -22,7 +22,7 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        blurLoadingEffect = BlurLoadingView(viewController: self)
+        blurLoadingEffect = BlurLoadingView(view: self.view, viewController: self)
         
         infoLabel.text = ""
         
@@ -48,11 +48,14 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func loginButtonAction(_ sender: Any) {
+        
+        //close keyboard
+        view.endEditing(true)
         blurLoadingEffect?.show()
         
         guard let userId = userIdTextField.text, !userId.isEmpty else {
             infoLabel.text = "User ID is empty"
-            blurLoadingEffect?.hide()
+            self.blurLoadingEffect?.hide()
             return
         }
         
@@ -63,7 +66,7 @@ class LoginVC: UIViewController {
     
     private func checkUserCredential(from ref : DatabaseReference, withId userId : String){
         ref.observeSingleEvent(of: .value){
-            snapshot in
+           snapshot ,  _ in
             
             if snapshot.exists(){
                 if let data = snapshot.value as? [String: Any]{
@@ -75,7 +78,6 @@ class LoginVC: UIViewController {
                             self.performSegue(withIdentifier: "ToHome", sender: userId)
                         } else{
                             self.blurLoadingEffect?.hide()
-
                             self.infoLabel.text = "Password are wrong!"
                         }
                     } else{

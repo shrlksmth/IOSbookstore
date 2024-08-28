@@ -20,7 +20,7 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate & UINavigation
     @IBOutlet var bookImageLoadingOverlay: UIActivityIndicatorView!
     @IBOutlet var createButtonView: UIButton!
     @IBOutlet var bookNotesTextField: UITextView!
-    
+    @IBOutlet var chooseButtonImageView: UIImageView!
     
     var blurLoadingEffect : BlurLoadingView?
     let FireBaseStorageRef = Storage.storage().reference()
@@ -36,7 +36,7 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate & UINavigation
     var bookId : String?
     var userInputbookImageUrl : String?
     var isEdit : Bool? = false
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,13 +44,14 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate & UINavigation
         bookNotesTextField.layer.cornerRadius = 5
         bookNotesTextField.delegate = self
         bookNotesTextField.textColor = UIColor.lightGray
+        chooseImageButton.setTitle("", for: .normal)
         
         if isEdit == true{
             setupEditInitialStates()
         }
         setupKeyboardLayout()
         
-        blurLoadingEffect = BlurLoadingView(viewController: self)
+        blurLoadingEffect = BlurLoadingView(view: self.view, viewController: self)
     }
     
     @IBAction func chooseImageButtonAction(_ sender: Any) {
@@ -62,6 +63,7 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate & UINavigation
             setupBeforeUpdateDatabase()
         } else{
             Task{
+                dismissKeyboard()
                 blurLoadingEffect?.show()
                 await BookDataProcesses()
             }
@@ -84,12 +86,20 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate & UINavigation
                     if isEdit == true{
                         do{
                             try await deleteImage(from: oldImageRef)
-                            await navigateToHomeVC()
+                            
+                            self.blurLoadingEffect?.successAlert()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
+                                self.navigateToHomeVC()
+                            }
+                            
                         } catch{
                             print("Error: \(error.localizedDescription)")
                         }
                     } else{
-                        await navigateToHomeVC()
+                        self.blurLoadingEffect?.successAlert()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
+                            self.navigateToHomeVC()
+                        }
                     }
                 }
             }

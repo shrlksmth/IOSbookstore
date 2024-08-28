@@ -17,6 +17,7 @@
 		435AD53C2C79B25500805DC5 /* UIVC+CustomAlertDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435AD53B2C79B25500805DC5 /* UIVC+CustomAlertDialog.swift */; };
 		435AD5412C7B38B100805DC5 /* BlurLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435AD5402C7B38B100805DC5 /* BlurLoading.swift */; };
 		435AD5432C7C18F400805DC5 /* HomeVC+FirebaseExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435AD5422C7C18F400805DC5 /* HomeVC+FirebaseExt.swift */; };
+		438B945D2C7E179900B3733A /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 438B945C2C7E179900B3733A /* JGProgressHUD */; };
 		439419B72C76F45100F47B16 /* CreateVC+EditExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439419B62C76F45100F47B16 /* CreateVC+EditExt.swift */; };
 		43BCDF0A2C74D9FA00ED6843 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCDF092C74D9FA00ED6843 /* FirebaseAnalytics */; };
 		43BCDF0C2C74D9FA00ED6843 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCDF0B2C74D9FA00ED6843 /* FirebaseAuth */; };
@@ -95,6 +96,7 @@
 				43BCDF102C74D9FA00ED6843 /* FirebaseFirestore in Frameworks */,
 				43BCDF0A2C74D9FA00ED6843 /* FirebaseAnalytics in Frameworks */,
 				43BCDF122C74D9FA00ED6843 /* FirebaseStorage in Frameworks */,
+				438B945D2C7E179900B3733A /* JGProgressHUD in Frameworks */,
 				43BCDF0C2C74D9FA00ED6843 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,6 +278,7 @@
 				43BCDF0D2C74D9FA00ED6843 /* FirebaseDatabase */,
 				43BCDF0F2C74D9FA00ED6843 /* FirebaseFirestore */,
 				43BCDF112C74D9FA00ED6843 /* FirebaseStorage */,
+				438B945C2C7E179900B3733A /* JGProgressHUD */,
 			);
 			productName = bookstore;
 			productReference = 43DF02112C6EE04C00F0F445 /* bookstore.app */;
@@ -351,6 +354,7 @@
 			mainGroup = 43DF02082C6EE04C00F0F445;
 			packageReferences = (
 				43BCDF082C74D9FA00ED6843 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				438B945B2C7E179900B3733A /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 			);
 			productRefGroup = 43DF02122C6EE04C00F0F445 /* Products */;
 			projectDirPath = "";
@@ -761,6 +765,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		438B945B2C7E179900B3733A /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.0;
+			};
+		};
 		43BCDF082C74D9FA00ED6843 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -772,6 +784,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		438B945C2C7E179900B3733A /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 438B945B2C7E179900B3733A /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
+		};
 		43BCDF092C74D9FA00ED6843 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 43BCDF082C74D9FA00ED6843 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

@@ -149,15 +149,13 @@ extension CreateVC{
         }
     }
     
-    func navigateToHomeVC() async {
-        await MainActor.run {
-            self.blurLoadingEffect?.hide()
-            if let viewControllers = self.navigationController?.viewControllers {
-                for viewController in viewControllers {
-                    if viewController is HomeVC {
-                        self.navigationController?.popToViewController(viewController, animated: true)
-                        return
-                    }
+    func navigateToHomeVC() {
+        
+        if let viewControllers = self.navigationController?.viewControllers {
+            for viewController in viewControllers {
+                if viewController is HomeVC {
+                    self.navigationController?.popToViewController(viewController, animated: true)
+                    return
                 }
             }
         }

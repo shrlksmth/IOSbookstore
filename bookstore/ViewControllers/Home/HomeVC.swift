@@ -13,7 +13,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var createNewBookButton: UIBarButtonItem!
-    private var blurLoadingView : BlurLoadingView?
+    private var blurLoadingEffect : BlurLoadingView?
     var booksArray : [BookModel] = []
     var DatabaseReference = Database.database().reference().child("Users")
     var userId : String?
@@ -21,7 +21,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        blurLoadingView = BlurLoadingView(viewController: self)
+        blurLoadingEffect = BlurLoadingView(view: self.view, viewController: self)
 
         let backButton = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(logoutButtonTapped))
         navigationItem.leftBarButtonItem = backButton
